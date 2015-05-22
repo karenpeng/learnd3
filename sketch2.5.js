@@ -12,7 +12,6 @@ var chart = d3.select('.chart')
 function renew(url){
   d3.csv(url, type, function (err, data) {
 
-    console.log(data)
     if (err) {
       console.error(err);
       return;
@@ -25,14 +24,16 @@ function renew(url){
     var barWidth = width / data.length;
 
     var bar = chart.selectAll('g')
-    .data(data)
+    .data(data, function(d){
+      return d.value;
+    })
 
-    bar
-    .exit()
-    .remove()
+    console.log(data.length)
 
     bar
     .attr('transform', function(d, i){
+      console.log('update')
+      console.log(d.value, i)
       return 'translate(' + i * barWidth + ',0)'
     })
     .style('fill', 'black')
@@ -41,6 +42,8 @@ function renew(url){
     .enter()
     .append('g')
     .attr('transform', function (d, i) {
+      console.log('enter')
+      console.log(d.value, i)
       return 'translate(' + i * barWidth + ', 0)'
     })
     .style('fill', 'green')
@@ -78,6 +81,17 @@ function renew(url){
       return d.value
     })
 
+    bar
+    .exit()
+    .style('fill', 'red')
+    .style('opacity', function(d, i){
+      console.log('exit')
+      console.log(d.value, i)      
+    })
+    .transition()
+    .style('opacity', 0)
+    .remove()
+
 
   })
 
@@ -87,7 +101,6 @@ function renew(url){
   }
 
 }
-
 var index = 0
 d3.select('svg').on('click', function(){
   console.log('---------------')

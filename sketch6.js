@@ -81,13 +81,21 @@ function update(_data){
   text
   .text(function(d){return d;})
 */
+
+/*
   //enter + update
-  // text
+  //this will supersed both the enter and the update :/
+  text
   // .attr('x', function(d, i){
   //   // console.log('recompute')
   //   // console.log(d, i)
   //   return i * 30;
   // })
+  .attr('transform', 'rotate(0 0 0)')
+  .transition()
+  .style('opacity', 1)
+  .attr('transform', 'rotate(1 0 0)')
+*/
 
 }
 

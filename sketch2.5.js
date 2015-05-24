@@ -1,3 +1,9 @@
+ok = 0;
+var notOk;
+
+console.log(ok);
+console.log(notOk);
+
 var width = 460,
   height = 500;
 // var y = d3.scale.linear()
@@ -25,6 +31,8 @@ function renew(url){
 
     var bar = chart.selectAll('g')
     .data(data, function(d){
+      //这样写d.value是唯一的 因为作为key与元素对应
+      //如果有重复的d.value从第二个开始就没掉了
       return d.value;
     })
 
@@ -61,7 +69,8 @@ function renew(url){
     .append('text')
 
 
-    var rect = d3.selectAll('g').selectAll('rect')
+    //bar now represens both update and enter g
+    var rect = bar.selectAll('rect')
     .attr("height", function (d) {
       return y(d.value);
     })
@@ -70,9 +79,11 @@ function renew(url){
       return height - y(d.value);
     })
 
-    var texts = d3.selectAll('g').selectAll('text')
+    var texts = bar.selectAll('text')
     .attr('x', (barWidth - 10) / 2 )
-    .attr('y', function (d) {
+    .attr('y', function (d, i) {
+      console.log('wat')
+      console.log(i)
       return height - y(d.value);
     })
     .attr('dy', '1.5em')
@@ -115,3 +126,10 @@ var files = [
   './c.csv',
   './d.csv',
 ]
+
+d3.select('#slider').on('change', function(){
+  renew(files[this.value])
+})
+
+var test = d3.selectAll('div').select('h2')
+console.log(test)

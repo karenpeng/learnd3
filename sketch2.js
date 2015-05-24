@@ -102,3 +102,8 @@ var files = [
   './c.csv',
   './d.csv',
 ]
+
+
+d3.select('#slider').on('click', function(){
+  renew(files(this.value))
+})

@@ -62,43 +62,83 @@ function update(_data){
       })// d is matrix[i]
 
 
-//   d3.select('tbody').selectAll('tr')
-//   .data(_data)
-// .enter()
-//   .append('tr')
-//   //.apend('td')
-//   //
-//   var td = d3.select('tbody').selectAll("tr")
-//   .selectAll('td')
-//   .data(function(d, i){
-//     console.log(d)
-//     return d;
-//   })
-  //remember!!! enter and append
-  //has to behind data
-var tdd = d3.select('tbody').selectAll('tr')
-.selectAll('td')
-.data(function(d){
-  return d;
-})
-.text(function(d){
+  d3.select('tbody').selectAll('tr')
+  .data(_data)
+.enter()
+  .append('tr')
+
+  //.apend('td')
+  //
+  var td = d3.select('tbody').selectAll("tr")
+  .selectAll('td')
+  .data(function(d, i){
+    console.log(d)
+    return d;
+  })
+  .text(function(d){
   return d;
 })
 
-tdd
-.data(function(d, i){
+   td = d3.select('tbody').selectAll("tr")
+  .selectAll('td')
+  .data(function(d, i){
+    console.log(d)
+    return d;
+  })
+  .text(function(d){
   return d;
 })
 .enter()
 .append('td')
-.text(function(d){return d;})
-
-tdd
-.data(function(d, i){
+  .text(function(d){
   return d;
 })
+
+ //
+  var td = d3.select('tbody').selectAll("tr")
+  .selectAll('td')
+  .data(function(d, i){
+    console.log(d)
+    return d;
+  })
+  .exit()
+  .remove()
+
+  
+   td = d3.select('tbody').selectAll("tr")
+  .selectAll('td')
+  .data(function(d, i){
+    console.log(d)
+    return d;
+  })
 .exit()
 .remove()
+
+  //remember!!! enter and append
+  //has to behind data
+// var tdd = d3.select('tbody').selectAll('tr')
+// .selectAll('td')
+// .data(function(d){
+//   return d;
+// })
+// .text(function(d){
+//   return d;
+// })
+
+// tdd
+// .data(function(d, i){
+//   return d;
+// })
+// .enter()
+// .append('td')
+// .text(function(d){return d;})
+
+// tdd
+// .data(function(d, i){
+//   return d;
+// })
+// .exit()
+// .remove()
 }
 
 var i = 0

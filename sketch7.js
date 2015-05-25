@@ -19,10 +19,6 @@ var matrix = [
 
 [
   [12, 13, 14, 15],
-  [ 8,  9, 10, 11],
-  [12, 13, 14, 15],
-  [ 0,  1,  2,  3],
-  [ 4,  5,  6,  7],
   [ 0,  1,  2,  3]
 ]
 
@@ -54,12 +50,16 @@ function update(_data){
   var td = d3.select('tbody').selectAll("tr")
       .data(_data, function(d, i){
         console.log(d, i)
+        return d
       })
     .selectAll("td")
       .data(function(d, i) { 
         console.log(d, i)
         return d; 
       })// d is matrix[i]
+      .text(function(d){
+        return d;
+      })
 
 
   d3.select('tbody').selectAll('tr')
@@ -67,27 +67,43 @@ function update(_data){
 .enter()
   .append('tr')
 
+
+  d3.select('tbody').selectAll('tr')
+  .data(_data)
+.exit()
+  .remove()
+
   //.apend('td')
-  //
   var td = d3.select('tbody').selectAll("tr")
   .selectAll('td')
   .data(function(d, i){
     console.log(d)
     return d;
   })
+  .enter()
+  .append('td')
   .text(function(d){
   return d;
 })
 
+var td = d3.select('tbody').selectAll("tr")
+  .selectAll('td')
+  .data(function(d, i){
+    console.log(d)
+    return d;
+  })
+  .exit()
+  .remove()
+
+
+
+/*
    td = d3.select('tbody').selectAll("tr")
   .selectAll('td')
   .data(function(d, i){
     console.log(d)
     return d;
   })
-  .text(function(d){
-  return d;
-})
 .enter()
 .append('td')
   .text(function(d){
@@ -113,7 +129,7 @@ function update(_data){
   })
 .exit()
 .remove()
-
+*/
   //remember!!! enter and append
   //has to behind data
 // var tdd = d3.select('tbody').selectAll('tr')
@@ -147,6 +163,12 @@ d3.select('table').on('click', function(){
   console.log('ouch')
   i++
   if(i > matrix.length -1 ) i = 0
+})
+
+d3.select('#slider').on('change', function(){
+  console.log('estghrthydr')
+  console.log(this)
+  update(matrix[this.value])
 })
 /*    
 var tr = d3.selectAll("tbody tr")

@@ -55,7 +55,47 @@ var datas = [
       key: 'jane',
       value: 6
     }
-  ]
+  ],
+  [
+    {
+      key: 'george',
+      value: 10
+    },
+    {
+      key: 'ikea',
+      value: 1
+    },
+    {
+      key: 'mike',
+      value: 5
+    },
+    {
+      key: 'jane',
+      value: 6
+    }
+  ],
+  [
+    {
+      key: 'john',
+      value: 5
+    },
+    {
+      key: 'kelly',
+      value : 2
+    },
+    {
+      key: 'karen',
+      value: 6
+    },
+    {
+      key: 'ben',
+      value: 7
+    },
+    {
+      key: 'mike',
+      value: 7
+    }
+  ],
 ]
 
 var width = 10000
@@ -85,29 +125,48 @@ function update(data){
       return d.key
     })
 
+  bar
+  .exit()
+  .remove()
+
+  bar
+  .transition()
+  .delay(100)
+  .attr('transform', function(d, i){
+    console.log(i)
+    return 'translate(' + i * barWidth + ', 0)' 
+  })
+
   // bar
   // .attr('transform', function(d, i){
   //   return 'translate(' + i * barWidth + ', 0)' 
   // })
 
+  //update
   bar.selectAll('rect')
   .style('fill', 'black')
 
+  //enter
   var barEnter = bar
   .enter()
   .append('g')
+  .attr('transform', function(d, i){
+    return 'translate(' + i * barWidth + ', 0)' 
+  })
 
   barEnter
   .append('rect')
   .style('fill', 'blue')
 
   barEnter
-  .append('text') 
+  .append('text')
 
-  bar
-  .attr('transform', function(d, i){
-    return 'translate(' + i * barWidth + ', 0)' 
-  })
+  //update and enter
+  // bar  
+  // //.transition()
+  // .attr('transform', function(d, i){
+  //   return 'translate(' + i * barWidth + ', 0)' 
+  // })
 
   var rects = d3.selectAll('rect')
     .attr('height', function(d){
@@ -127,10 +186,6 @@ function update(data){
     .text(function(d){
       return d.key
     })
-
-  bar
-  .exit()
-  .remove()
 }
 
 var index = 0
@@ -138,6 +193,6 @@ d3.select('svg').on('click', function(){
   console.log('---------------')
   update(datas[index])
   index++
-  if(index > 3) index = 0
+  if(index > datas.length-1) index = 0
 })
 

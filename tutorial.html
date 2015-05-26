@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html class="ocks-org do-not-copy">
+<meta charset="utf-8">
+<title>Object Constancy</title>
+<style>
+svg {
+  font: 10px sans-serif;
+}
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar:hover rect {
+  fill: brown;
+}
+
+.value {
+  fill: white;
+}
+
+.axis {
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  stroke: none;
+}
+
+.x.axis line {
+  stroke: #fff;
+  stroke-opacity: .8;
+}
+
+.y.axis path {
+  stroke: black;
+}
+
+</style>
+
+<p id="chart">
+
+<aside>Source: <a href="http://www.census.gov/popest/archives/2000s/vintage_2008/" target="_blank">Census Bureau</a></aside>
+
+<p id="menu"><b>Top States by Age Bracket, 2008</b><br>Age: <select></select>
+<script type="text/javascript" src="d3.js"></script>
+<script type="text/javascript" src="tutorial.js"></script>

@@ -161,22 +161,20 @@ svg.append('g')
 .attr('transform',  'translate(' + margin.left + ', ' + height + ')')
 .attr('id', 'xAxis')
 .attr('class', 'axis')
+.append('text')
+.attr('transform', 'translate(' + width +',0)')
+.text('name')
+
 
 svg.append('g')
 .attr('transform',  'translate(' + margin.left + ', ' + margin.top +')')
 .attr('id', 'yAxis')
 .attr('class', 'axis')
+.append('text')
+.attr('transform', 'rotate(-90)')
+.attr('transform', 'translate(0, 10)')
+.text('value2')
 
-  d3.select('#xAxis')
-  .append('text')
-  .attr('transform', 'translate(' + width +',0)')
-  .text('name')
-
-  d3.select('#yAxis').call(yAxis)
-  .append('text')
-  .attr('transform', 'rotate(90)')
-  .attr('transform', 'translate(0, 10)')
-  .text('value2')
 
 function update(data){
   /*
@@ -215,32 +213,47 @@ function update(data){
   add content in it
    */
   var bubbles = svg.selectAll('.bubble')
-  .data(data)
+  .data(data, function(d){
+    return d.key
+  })
 
   //exit
   var bubbleExit = bubbles
   .exit()
   .remove()
 
+  var circles = bubbles.selectAll('circle')
+  .style('fill', 'black')
+
+  bubbles
+  .transition()
+  .attr('transform', function(d, i){
+    return 'translate(' + interval * i + ', 0)'
+  })
+
   //enter
   var bubbleEnter = bubbles
   .enter()
   .append('g')
   .attr('class', 'bubble')
+    .attr('transform', function(d, i){
+    return 'translate(' + interval * i + ', 0)'
+  })
 
   bubbleEnter
   .append('circle')
+  .style('fill', 'blue')
 
   bubbleEnter
   .append('text')
 
   //update and enter
-  bubbles
-  .attr('transform', function(d, i){
-    return 'translate(' + interval * i + ', 0)'
-  })
+  // bubbles
+  // .attr('transform', function(d, i){
+  //   return 'translate(' + interval * i + ', 0)'
+  // })
 
-  var circles = bubbles.selectAll('circle')
+  circles = bubbles.selectAll('circle')
   .attr('r', function(d){
     console.log(this)
     return r(d.value) / 2

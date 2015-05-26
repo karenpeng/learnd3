@@ -160,6 +160,11 @@ function update(data){
 
   barEnter
   .append('text')
+  .attr('class', 'name')
+
+  barEnter
+  .append('text')
+  .attr('class', 'value')
 
   //update and enter
   // bar  
@@ -177,7 +182,7 @@ function update(data){
       return barHeightScala(barHeight - d.value)
     })
 
-  var texts = d3.selectAll('text')
+  var texts = d3.selectAll('g').select('text')
     .style('fill', 'white')
     .style('font-size', '10px')
     .attr('y', barHeightScala(barHeight))
@@ -186,6 +191,19 @@ function update(data){
     .text(function(d){
       return d.key
     })
+
+  var text2 = d3.selectAll('.value')
+    .style('fill', 'white')
+    .style('font-size', '10px')
+    .attr('y', function(d){
+      return barHeightScala(barHeight - d.value)
+    })
+    .attr('dx', '1.4em')
+    .attr('dy', '2em')
+    .text(function(d){
+      return d.value
+    })
+
 }
 
 var index = 0

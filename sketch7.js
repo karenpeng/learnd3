@@ -67,12 +67,6 @@ function update(_data){
 .enter()
   .append('tr')
 
-
-  d3.select('tbody').selectAll('tr')
-  .data(_data)
-.exit()
-  .remove()
-
   //.apend('td')
   var td = d3.select('tbody').selectAll("tr")
   .selectAll('td')
@@ -86,14 +80,20 @@ function update(_data){
   return d;
 })
 
-var td = d3.select('tbody').selectAll("tr")
-  .selectAll('td')
-  .data(function(d, i){
-    console.log(d)
-    return d;
-  })
-  .exit()
+  
+  d3.select('tbody').selectAll('tr')
+  .data(_data)
+.exit()
   .remove()
+
+// var td = d3.select('tbody').selectAll("tr")
+//   .selectAll('td')
+//   .data(function(d, i){
+//     console.log(d)
+//     return d;
+//   })
+//   .exit()
+//   .remove()
 
 
 

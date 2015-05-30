@@ -47,6 +47,7 @@ var td = d3.selectAll("tbody tr")
 */
 function update(_data){
 
+//update
   var td = d3.select('tbody').selectAll("tr")
       .data(_data, function(d, i){
         console.log(d, i)
@@ -61,7 +62,7 @@ function update(_data){
         return d;
       })
 
-
+//enter 要 enter两次啊妈呀
   d3.select('tbody').selectAll('tr')
   .data(_data)
 .enter()
@@ -80,7 +81,7 @@ function update(_data){
   return d;
 })
 
-  
+//remove
   d3.select('tbody').selectAll('tr')
   .data(_data)
 .exit()

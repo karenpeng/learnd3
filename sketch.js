@@ -12,7 +12,6 @@
 var width =200,
     barHeight = 20;
 
-
 var chart = d3.select('.chart')
 .attr('width', width);
 

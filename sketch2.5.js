@@ -27,13 +27,13 @@ function renew(url){
       return d.value
     })])
 
-    var barWidth = width / data.length;
+    var barWidth = width / data.length
 
     var bar = chart.selectAll('g')
     .data(data, function(d){
       //这样写d.value是唯一的 因为作为key与元素对应
       //如果有重复的d.value从第二个开始就没掉了
-      return d.value;
+      return d.value
     })
 
     console.log(data.length)
